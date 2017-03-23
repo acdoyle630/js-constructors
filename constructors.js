@@ -155,34 +155,22 @@ Spellcaster.prototype.invoke = function( spell, spellcaster ){
   if( spell instanceof Spell === true && spell instanceof DamageSpell === false && spellcaster === undefined ) {
     if( this.mana >= spell.cost){
     this.spendMana( spell.cost );
-    console.log(157);
     return true;
   } else {
     return false;
   }
 }
   if( spell instanceof Spell === false && spell instanceof DamageSpell === false) {
-    console.log(163);
     return false;
   }
   if( spell instanceof DamageSpell === true && spellcaster instanceof Spellcaster === false ){
-    console.log(167);
-    console.log(false);
     return false;
   }
   if( spell instanceof DamageSpell === true && spellcaster instanceof Spellcaster === true && this.mana >= spell.cost ) {
     spellcaster.inflictDamage( spell.damage );
     this.spendMana( spell.cost );
-    console.log(173);
     return true;
   } else {
     return false;
   }
 };
-
-var loren = new Spellcaster('loren', 300, 125);
-var morty = new Spellcaster('morty', 300, 125);
-var expensivePulse = new DamageSpell('force pulse', 200, 100, 'fire');
-
-
-loren.invoke(expensivePulse, morty);
